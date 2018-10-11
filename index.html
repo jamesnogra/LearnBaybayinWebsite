@@ -196,7 +196,7 @@
         <h2>Let your friends know...</h2>
         <ul class="list-inline list-social">
           <li class="list-inline-item social-twitter">
-            <a href="#">
+            <a href="" data-js="twitter-share">
               <i class="fab fa-twitter"></i>
             </a>
           </li>
@@ -287,6 +287,14 @@
       }
       function updateStatusCallback() {
 
+      }
+      
+      var twitterShare = document.querySelector('[data-js="twitter-share"]');
+      twitterShare.onclick = function(e) {
+        e.preventDefault();
+        var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+        if(twitterWindow.focus) { twitterWindow.focus(); }
+          return false;
       }
     </script>
 
