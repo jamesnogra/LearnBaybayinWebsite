@@ -26,6 +26,8 @@
     <!-- Custom styles for this template -->
     <link href="css/new-age.css" rel="stylesheet">
 
+    <link rel="shortcut icon" type="image/x-icon" href="img/baybayin-96.png" />
+
   </head>
 
   <body id="page-top">
@@ -199,7 +201,7 @@
             </a>
           </li>
           <li class="list-inline-item social-facebook">
-            <a href="#">
+            <a href="" id="shareBtn" data-href="https://www.your-domain.com/your-page.html" data-layout="button_count">
               <i class="fab fa-facebook-f"></i>
             </a>
           </li>
@@ -238,6 +240,34 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/new-age.min.js"></script>
+
+    <script src="http://connect.facebook.net/en_US/all.js" async></script>
+    <script>
+      $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+          FB.init({
+            appId: '2110429875888996',
+            version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+          });     
+          $('#loginbutton,#feedbutton').removeAttr('disabled');
+          FB.getLoginStatus(updateStatusCallback);
+        });
+      });
+      document.getElementById('shareBtn').onclick = function() {
+        FB.ui({
+          method: 'share',
+          display: 'popup',
+          href: 'https://learnbaybayin.iamcebu.com/',     // The same than link in feed method
+          title: 'Learn Baybayín App',  // The same than name in feed method
+          picture: 'https://learnbaybayin.iamcebu.com/img/pixel-p.png',  
+          description: 'Download the Learn Baybayin app to start learning how to read and write the script..',
+        }, function(response){});
+      }
+      function updateStatusCallback() {
+
+      }
+    </script>
 
   </body>
 
